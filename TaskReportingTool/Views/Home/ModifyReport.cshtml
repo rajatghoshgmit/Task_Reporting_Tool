@@ -1,0 +1,261 @@
+﻿@model IEnumerable<TaskReportingTool.Models.ReportView>
+
+@{
+    ViewBag.Title = "Reports";
+    Layout = "~/Views/Home/_homeLayout.cshtml";
+}
+@{
+    String[] day = ViewBag.firstdate.ToString().Split('-');
+    DateTime startdate = new DateTime(int.Parse(day[2]), int.Parse(day[1]), int.Parse(day[0]));
+    int d = 0;
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<style>
+    .calender{
+        position:relative;
+        width:100%;
+        min-height:300px;
+        height:auto;
+        padding:30px 46px;
+        float:left;
+    }
+    .calenderrow {
+        position:relative;
+        width:100%;
+        float:left;
+    }
+    .calendercell{
+        width:130px;
+        height:130px;
+        border:2px solid #bfbfbf;
+        float:left;
+        position:relative;
+        margin:5px ;
+        padding:10px;
+        border-radius:5px;
+    }
+    .sun{
+        background-color:#ff8080 !important;
+        color:#ffffff !important;
+    }
+    .dis{
+        color:#999999;
+    }
+    .nom{
+        cursor:pointer;
+    }
+    .cdate{
+        text-align:center;
+        font-size:42px;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight:600;
+        margin-bottom:5px;
+    }
+    .ctask{
+        text-align:center;
+        font-size:18px;
+        font-family:Tahoma;
+        color:#33ff77;
+        font-weight:600;
+    }
+ .input-div .input-cell {
+        padding-left: 55px;
+        width: 100%;
+        height: 40px;
+        font-size: 24px;
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-radius: 8px;
+        border: 2px solid #bfbfbf;
+        background: #f2f2f2;
+        font-weight: 100;
+    }
+
+    .input-div {
+        position: relative;
+        margin-top: 8px;
+        margin-bottom:8px;
+    }
+
+        .input-div i {
+            position: absolute;
+            left: 10px;
+            font-size: 28px;
+            padding: 5px;
+            color: #bfbfbf;
+        }
+
+        .input-div .input-cell:focus + i {
+            color: #80aaff;
+        }
+
+    .input-cell:focus {
+        border: 2px solid #80aaff;
+        outline: none;
+    }
+    .mymodel{
+        top:100px;
+    }
+    .calenderhead{
+        width:130px;
+        height:70px;
+        border:0.5px solid #bfbfbf;
+        float:left;
+        position:relative;
+        margin:5px ;
+        margin-bottom:0px;
+        padding:10px;
+        border-radius:5px;
+        font-size:30px;
+        font-weight:600;
+        background-color:#80ffaa;
+        color:#ffffff !important;
+    }
+    .calendertitle{
+        font-family:Consolas;
+        font-size:50px;
+        margin-bottom:10px;
+        font-weight:600;
+        color:#4d79ff;
+    }
+</style>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+       
+        <div class="modal-content mymodel">
+            <div class="modal-header">
+                <h4 class="modal-title">Add/Edit Reports</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form action="~/Home/Reports" method="post">
+                <div class="modal-body">
+
+                    <label>Task Name</label>
+                    <div class="input-div">
+                        <select name="TaskName" class="input-cell">
+                            <option value="" id="taskname" selected></option>
+                            @if (ViewBag.task != null)
+                            {
+                                foreach (var item in ViewBag.task)
+                                {
+                                    <option value="@(item.TaskName.ToString() + '-' + item.TaskId.ToString())"> @item.TaskName</option>
+                                }
+                            }
+                            else
+                            {
+                                <option value="No" disabled>No data Found</option>
+                            }
+                        </select>
+
+                        <i class="fa fa-tasks" aria-hidden="true"></i>
+                    </div>
+                    <label>Reports Date</label>
+                    <div class="input-div">
+                        <input type="date" class="input-cell" name="Dates" id="date" readonly >
+                        <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                    </div>
+                    <input type="hidden" name="Id" value="" id="reportid" />
+                    
+                    <br />
+
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-danger" value="Delete" name="bto" id="delete" />
+                    <input type="submit" class="btn btn-success" value="Save" name="bto" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+ </div>
+    <div class="calender">
+ 
+            <a href="~/Home/Index" class="btn btn-primary btn-lg" style="float:left;">
+                Home
+            </a>
+            
+            <center>
+                <div class="calendertitle">@DateTime.Now.ToString("MMMM")</div>
+                <div class="calenderrow">
+                    <div class="calenderhead sun">Sun</div>
+                    <div class="calenderhead nom">Mon</div>
+                    <div class="calenderhead nom">Tue</div>
+                    <div class="calenderhead nom">Wed</div>
+                    <div class="calenderhead nom">Thu</div>
+                    <div class="calenderhead nom">Fri</div>
+                    <div class="calenderhead sun">Sat</div>
+                </div>
+            </center>
+            <center>
+
+                @for (int i = 0; i < 5; i++)
+            {
+                    <div class="calenderrow">
+
+                        @for (int j = 0; j < 7; j++)
+                {
+                    if (startdate.ToString("ddd") == "Sun" | startdate.ToString("ddd") == "Sat")
+                    {
+                                <div class="calendercell sun"><div class="cdate">@startdate.ToString("dd")</div></div>
+                            }
+                            else
+                            {
+                                if (startdate.ToString("MM") == DateTime.Now.ToString("MM"))
+                                {
+                                    d = 0;
+                                    if (Model != null)
+                                    {
+
+                                        foreach (var item in Model)
+                                        {
+                                            if (item.Dates.ToString() == startdate.ToString())
+                                            {
+                                                <div class="calendercell nom" data-toggle="modal" data-target="#myModal" onclick="change('@item.TaskName.ToString()','@item.TaskId.ToString()', '@item.Id.ToString()', '@item.Dates.ToString("yyyy-MM-dd")')">
+                                                    <div class="cdate">@startdate.ToString("dd")</div>
+                                                    <div class="ctask"> @item.TaskName.ToString()</div>
+                                                    @{d = 1;}
+                                                </div>
+                                                                }
+
+                                                            }
+                                                        }
+                                                        if (d == 0)
+                                                        {
+                                                            <div class="calendercell nom" data-toggle="modal" data-target="#myModal" onclick="change2('@startdate.ToString("yyyy-MM-dd")')">
+                                                                <div class="cdate">@startdate.ToString("dd")</div>
+                                                            </div>
+                                                            }
+
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="calendercell dis"><div class="cdate">@startdate.ToString("dd")</div></div>
+                                                                }
+                                                            }
+                                                            startdate = startdate.AddDays(1);
+                                                        }
+
+                    </div>
+                                                        }
+            </center>
+</div>
+
+<script type="text/javascript">
+    function change(name, tid, id, date) {
+        $('#taskname').val(name+'-'+tid);
+        $('#taskname').html(name);
+        document.getElementById("date").value = date;
+        $('#reportid').val(id);
+        $('#delete').removeClass("disabled");
+        $('#delete').addClass("active");
+    }
+    function change2(date) {
+        $('#taskname').val("None");
+        $('#taskname').html("None");
+        document.getElementById("date").value = date;
+        $('#reportid').val(0);
+        $('#delete').removeClass("active");
+        $('#delete').addClass("disabled");
+    }
+</script>

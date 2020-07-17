@@ -1,0 +1,129 @@
+﻿@model IEnumerable<TaskReportingTool.Models.TaskView>
+@{
+    ViewBag.Title = "TotalTask";
+    Layout = "~/Views/Home/_homeLayout.cshtml";
+}
+<link href="~/Content/task.css" rel="stylesheet" />
+
+
+<div class="leftcontainer">
+    <div class="menutitle">Menu</div>
+
+    <div class="leftinner">
+        <div class="menu_item">
+            <center>
+                <a href="~/Home/PendingTask">
+                    <img src="~/image/task.png" class="menu_image" title="Pending Task" />
+                    <div class="menu_text">Pending Task</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Home/TotalTask">
+                    <img src="~/image/totaltask.png" class="menu_image" title="Total Task" />
+                    <div class="menu_text">Total Task</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Home/ModifyReport">
+                    <img src="~/image/report.png" class="menu_image" title="Add Report" />
+                    <div class="menu_text">Add Report</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Home/ModifyReport">
+                    <img src="~/image/editreport.png" class="menu_image" title="Modify Report" />
+                    <div class="menu_text">Modify Report</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Home/ModifyUser">
+                    <img src="~/image/manageuser.png" class="menu_image" title="Modify User" />
+                    <div class="menu_text">Modify User</div>
+                </a>
+            </center>
+        </div>
+
+        @if (Session["Roles"].ToString() == "Admin")
+        {
+            <div class="menu_item">
+                <center>
+                    <a href="~/Home">
+                        <img src="~/image/admin-panel.png" class="menu_image" title="Admin Panel" />
+                        <div class="menu_text">Admin Panel</div>
+                    </a>
+                </center>
+            </div>}
+
+    </div>
+
+
+
+</div>
+<div class="rightcontainer">
+    <div class="headtitle">
+        Total Task
+    </div>
+    <div class="innercont">
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                if (int.Parse(item.Status.ToString()) < 51)
+                {
+                    <div class="taskbox t50">
+
+                        <div class="tasktitle">@item.TaskName</div><div class="taskstatus"><strong>Status :</strong> @item.Status %</div>
+                        <div class="taskdate"><strong>Start Date :</strong> @item.SDate </div><div class="taskdate"><strong>End Date :</strong> @item.EDate</div>
+                        <div class="taskhead"><strong>Project Manager :</strong> @item.ProjectManagerName <br /> <strong>Responcable Person :</strong> @item.RNPerson</div>
+                        <div class="taskmember">
+                            <strong>Resource : </strong>
+
+                            @foreach (string r in item.ResourceName)
+                        {    @r<span>,</span>           }
+                        </div>
+                    </div>
+                }
+                else if (int.Parse(item.Status.ToString()) == 100)
+                {
+                    <div class="taskbox tcomp">
+
+                        <div class="tasktitle">@item.TaskName</div><div class="taskstatus"><strong>Status :</strong> @item.Status %</div>
+                        <div class="taskdate"><strong>Start Date :</strong> @item.SDate </div><div class="taskdate"><strong>End Date :</strong> @item.EDate</div>
+                        <div class="taskhead"><strong>Project Manager :</strong> @item.ProjectManagerName <br /> <strong>Responcable Person :</strong> @item.RNPerson</div>
+                        <div class="taskmember">
+                            <strong>Resource : </strong>
+
+                            @foreach (string r in item.ResourceName)
+                        {    @r<span>,</span>           }
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="taskbox t90">
+
+                        <div class="tasktitle">@item.TaskName</div><div class="taskstatus"><strong>Status :</strong> @item.Status %</div>
+                        <div class="taskdate"><strong>Start Date :</strong> @item.SDate </div><div class="taskdate"><strong>End Date :</strong> @item.EDate</div>
+                        <div class="taskhead"><strong>Project Manager :</strong> @item.ProjectManagerName <br /> <strong>Responcable Person :</strong> @item.RNPerson</div>
+                        <div class="taskmember">
+                            <strong>Resource : </strong>
+
+                            @foreach (string r in item.ResourceName)
+                        {    @r<span>,</span>           }
+                        </div>
+                    </div>
+                }
+            }
+        }
+        else
+        { }
+    </div>
+</div>

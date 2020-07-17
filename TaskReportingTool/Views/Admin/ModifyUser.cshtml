@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "ModifyUser";
+    Layout = "~/Views/Home/_homeLayout.cshtml";
+}
+
+<link href="~/Content/task.css" rel="stylesheet" />
+<div class="leftcontainer">
+    <div class="menutitle">Menu</div>
+
+    <div class="leftinner">
+        <div class="menu_item">
+            <center>
+                <a href="~/Admin/AddTask">
+                    <img src="~/image/addtask.png" class="menu_image" title=">Add Task" />
+                    <div class="menu_text">Add Task</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Admin/ModifyTask">
+                    <img src="~/image/modifytask.png" class="menu_image" title="Modify Task" />
+                    <div class="menu_text">Modify Task</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Admin/AddUser">
+                    <img src="~/image/addUser.png" class="menu_image" title="Add User" />
+                    <div class="menu_text">Add User</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Admin/ModifyUser">
+                    <img src="~/image/modifyuser.png" class="menu_image" title="Modify User" />
+                    <div class="menu_text">Modify User</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Admin/Reports">
+                    <img src="~/image/reports.png" class="menu_image" title="Reports" />
+                    <div class="menu_text">Reports</div>
+                </a>
+            </center>
+        </div>
+
+    </div>
+
+
+
+</div>
+<div class="rightcontainer">
+    <div class="headtitle">
+        All Employee
+    </div>
+    <div class="innercont" id="alluser">
+       
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        setInterval(function () {
+            $("#alluser").load('@Url.Content("~/Admin/GetUserDetails")');
+        }, 3000);
+        
+    });
+</script> 

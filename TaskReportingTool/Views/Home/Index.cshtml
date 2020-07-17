@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+    Layout = @"~/Views/Home/_homeLayout.cshtml";
+}
+
+
+<link href="~/Content/task.css" rel="stylesheet" />
+<div class="leftcontainer">
+    <div class="menutitle">Menu</div>
+
+    <div class="leftinner">
+        <div class="menu_item">
+            <center>
+                <a href="~/Home/PendingTask">
+                    <img src="~/image/task.png" class="menu_image" title="Pending Task" />
+                    <div class="menu_text">Pending Task</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Home/TotalTask">
+                    <img src="~/image/totaltask.png" class="menu_image" title="Total Task" />
+                    <div class="menu_text">Total Task</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Home/ModifyReport">
+                    <img src="~/image/report.png" class="menu_image" title="Add Report" />
+                    <div class="menu_text">Add Report</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Home/ModifyReport">
+                    <img src="~/image/editreport.png" class="menu_image" title="Modify Report" />
+                    <div class="menu_text">Modify Report</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Home/ModifyUser">
+                    <img src="~/image/manageuser.png" class="menu_image" title="Modify User" />
+                    <div class="menu_text">Modify User</div>
+                </a>
+            </center>
+        </div>
+
+        @if (Session["Roles"].ToString() == "Admin")
+        {
+            <div class="menu_item">
+                <center>
+                    <a href="~/Admin/Index">
+                        <img src="~/image/admin-panel.png" class="menu_image" title="Admin Panel" />
+                        <div class="menu_text">Admin Panel</div>
+                    </a>
+                </center>
+            </div>}
+
+    </div>
+
+
+
+</div>
+<div class="rightcontainer">
+    <div class="headtitle">
+        DashBoard
+    </div>
+    <div class="innercont">
+   </div>
+
+    </div>

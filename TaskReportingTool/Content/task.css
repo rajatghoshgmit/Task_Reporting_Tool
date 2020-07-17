@@ -1,0 +1,158 @@
+﻿    .leftinner {
+        padding: 30px 20px;
+    }
+
+.menu_image {
+    width: 125px;
+    height: 125px;
+    background-color: #f2f2f2;
+    border: 3px solid #595959;
+    border-radius: 20px;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+.menu_image:hover {
+            background-color: #1ab2ff;
+            opacity: 0.9;
+            cursor: pointer;
+        }
+
+    .menu_text {
+        text-decoration: none;
+        color: #ff4d4d;
+        font-weight: 600;
+        font-size: 22px;
+    }
+
+        .menu_text:hover {
+            text-decoration: none;
+            color: #ff4d4d;
+            font-weight: 600;
+            font-size: 22px;
+        }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .menu_item {
+        width: 50%;
+        float: left;
+        margin-bottom: 10px;
+    }
+
+    .headtitle {
+        width: 100%;
+        padding: 10px 0px 0px 40px;
+        color: #33bbff;
+        font-size: 35px;
+        font-weight: 700;
+        position: relative;
+    }
+
+    .innercont {
+        width: 100%;
+        padding: 0px 30px;
+        position: relative;
+        margin-top: 20px;
+    }
+
+    .taskbox {
+        width: 100%;
+        border-radius: 10px;
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 20px;
+        color: #ffffff;
+        min-height: 215px;
+    }
+
+    .tasktitle {
+        width: 70%;
+        position: relative;
+        font-size: 29px;
+        float: left;
+        font-weight: 800;
+        margin-bottom: 5px;
+    }
+
+    .taskstatus {
+        width: 30%;
+        position: relative;
+        float: left;
+        margin-bottom: 5px;
+    }
+
+    .taskdate {
+        width: 50%;
+        position: relative;
+        float: left;
+        margin-bottom: 5px;
+    }
+
+    .taskhead {
+        width: 100%;
+        position: relative;
+        float: left;
+        margin-bottom: 5px;
+    }
+
+    .taskmember {
+        width: 100%;
+        position: relative;
+        float: left;
+        margin-bottom: 5px;
+    }
+
+    .tcomp {
+        background-color: #4dffb8;
+        border: 1px solid #00cc7a;
+        transition: 0.5s ease-in all;
+        cursor: pointer;
+    }
+
+        .tcomp:hover {
+            background-color: #1affa3;
+        }
+
+    .t50 {
+        background-color: #ff66a3;
+        border: 1px solid #ff0066;
+        transition: 0.5s ease-in all;
+        cursor: pointer;
+    }
+
+        .t50:hover {
+            background-color: #ff3385;
+        }
+
+    .t90 {
+        background-color: #9999ff;
+        border: 1px solid #6666ff;
+        transition: 0.5s ease-in all;
+        cursor: pointer;
+    }
+    .tuser {
+         background-color: #3399ff;
+        border: 1px solid #66b3ff;
+        transition: 0.5s ease-in all;
+    }
+    
+    .t90:hover {
+            background-color: #8080ff;
+        }
+    .btn-ed{
+        float:right;
+        font-size:30px;
+        color:#ffffff;
+        margin-right:10px;
+        width:20%;
+        text-align:right;
+        padding:5px;
+        position: relative;
+    }
+    i{
+        color:#ffffff;
+        text-decoration:none;
+    }
+ 

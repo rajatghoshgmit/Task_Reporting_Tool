@@ -1,0 +1,289 @@
+﻿
+@{
+    ViewBag.Title = "Add User";
+    Layout = "~/Views/Home/_homeLayout.cshtml";
+}
+<style>
+    .input-div .input-cell {
+        padding-left: 55px;
+        width: 100%;
+        height: 40px;
+        font-size: 24px;
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-radius: 8px;
+        border: 2px solid #bfbfbf;
+        background: #f2f2f2;
+        font-weight: 100;
+    }
+
+    .input-div {
+        position: relative;
+        margin-top: 25px;
+    }
+
+        .input-div i {
+            position: absolute;
+            left: 10px;
+            font-size: 28px;
+            padding: 5px;
+            color: #bfbfbf;
+        }
+
+        .input-div .input-cell:focus + i {
+            color: #80aaff;
+        }
+
+    .input-cell:focus {
+        border: 2px solid #80aaff;
+        outline: none;
+    }
+</style>
+
+
+<link href="~/Content/task.css" rel="stylesheet" />
+<div class="leftcontainer">
+    <div class="menutitle">Menu</div>
+
+    <div class="leftinner">
+        <div class="menu_item">
+            <center>
+                <a href="~/Admin/AddTask">
+                    <img src="~/image/addtask.png" class="menu_image" title=">Add Task" />
+                    <div class="menu_text">Add Task</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Admin/ModifyTask">
+                    <img src="~/image/modifytask.png" class="menu_image" title="Modify Task" />
+                    <div class="menu_text">Modify Task</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Admin/AddUser">
+                    <img src="~/image/addUser.png" class="menu_image" title="Add User" />
+                    <div class="menu_text">Add User</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Admin/ModifyUser">
+                    <img src="~/image/modifyuser.png" class="menu_image" title="Modify User" />
+                    <div class="menu_text">Modify User</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Admin/Reports">
+                    <img src="~/image/reports.png" class="menu_image" title="Reports" />
+                    <div class="menu_text">Reports</div>
+                </a>
+            </center>
+        </div>
+
+    </div>
+
+
+
+</div>
+<div class="rightcontainer">
+    @if (ViewBag.EmployeeId != null)
+    {
+        <div class="headtitle">
+            Modify Employee
+        </div>
+        <div class="innercont">
+
+            <form  action="~/Admin/ModifyEmployee" method="POST">
+                <input type="hidden" name="EmployeeId" value="@ViewBag.EmployeeId">
+                <div class="input-div">
+                    <input type="text" class="input-cell" name="Fname" placeholder="First Name" required id="fname" value="@ViewBag.Fname" readonly>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </div>
+                <div class="input-div">
+                    <input type="text" class="input-cell" name="Lname" placeholder="Last Name" required id="lname" value="@ViewBag.Lname" readonly>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </div>
+                <div class="input-div">
+                    <input type="text" class="input-cell" name="Department" required  value="@ViewBag.Department" readonly id="edept" />
+                    <i class="fa fa-tasks" aria-hidden="true"></i>
+                </div>
+                <div class="input-div">
+                    <select class="input-cell" name="Roles" required id="erole">
+                        <option value="@ViewBag.Roles" selected>@ViewBag.Roles</option>
+                    </select>
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                </div>
+                <div class="input-div">
+                    <input type="text" class="input-cell" readonly name="CreDate" value="@ViewBag.CreDate">
+                    <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+                </div>
+                <div class="input-div">
+                    <input type="email" class="input-cell" name="Email" placeholder="email@email.com" required value="@ViewBag.Email">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                </div>
+                <div class="input-div">
+                    <input type="text" class="input-cell" name="Username" placeholder="Username" required value="@ViewBag.Username" readonly>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </div>
+
+
+                <br />
+                <input type="submit" value="Modify Employee" class="btn btn-block btn-success">
+
+
+
+            </form>
+        </div>
+    }
+    else
+    {
+    <div class="headtitle">
+        Add Employee
+    </div>
+    <div class="innercont">
+
+        <form name="frmRegis" action="~/Admin/SaveEmployee" method="POST">
+            <input type="hidden" name="EmployeeId">
+            <div class="input-div">
+                <input type="text" class="input-cell" name="Fname" placeholder="First Name" required id="fname">
+                <i class="fa fa-user" aria-hidden="true"></i>
+             </div>
+            <div class="input-div">
+                <input type="text" class="input-cell" name="Lname" placeholder="Last Name" required id="lname">
+                <i class="fa fa-user" aria-hidden="true"></i>
+            </div>
+            <div class="input-div">
+                <select class="input-cell" name="Department" placeholder="Department" required id="department">
+                            <option value="" disabled selected>None</option>
+                            <option value="Standard Test">Standard Test</option>
+                            <option value="Test Project">Test Project</option>
+                            <option value="Data Mining">Data Mining</option>
+                </select>
+                <i class="fa fa-tasks" aria-hidden="true"></i>
+            </div>   
+            <div class="input-div">
+                <select class="input-cell" name="Roles" placeholder="Role" required id="role">
+                <option value="" disabled selected>None</option>
+                </select>
+                <i class="fa fa-users" aria-hidden="true"></i>
+            </div> 
+            <div class="input-div">
+                <input type="text" class="input-cell" readonly name="CreDate" value="@DateTime.Now.ToString("dd-MM-yyyy")">
+                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+            </div>
+            <div class="input-div">
+                <input type="email" class="input-cell"  name="Email" placeholder="email@email.com" required>
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+            </div>
+            <div class="input-div">
+                <input type="text" class="input-cell" name="Username" placeholder="Username" required id="username" readonly>
+                <i class="fa fa-user" aria-hidden="true"></i>
+            </div>
+           
+            
+            <br />
+                <input type="submit" value="Save" class="btn btn-block btn-success">
+
+
+
+</form>
+    </div>
+    }
+
+</div>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#fname").on("input", function () {
+        var f = $("#fname").val().toLowerCase();
+        var l = $("#lname").val().toLowerCase();
+        if (f == "" && l == "")
+            $("#username").val("");
+        else
+            $("#username").val(f + "." + l);
+    });
+    $("#lname").on("input", function () {
+        var f = $("#fname").val().toLowerCase();
+        var l = $("#lname").val().toLowerCase();
+        if (f == "" && l == "")
+            $("#username").val("");
+        else
+            $("#username").val(f + "." + l);
+    });
+});
+</script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+var TestProject = [
+	{display: "Intern", value: "intern" },
+	{display: "Project-Manager", value: "project-manager" },
+	{display: "Employee", value: "employee" }];
+
+var StandardTest = [
+	{display: "Intern", value: "intern" },
+	{display: "Test-Engineer", value: "test-engineer" },
+	{display: "Project-Manager", value: "project-manager" }];
+
+var Integration = [
+	{display: "Intern", value: "intern" },
+	{display: "Employee", value: "employee" },
+	{display: "Project-Manager", value: "project-manager" }];
+
+
+$("#department").change(function() {
+		var parent = $(this).val(); 
+
+		switch(parent){ 
+		    case 'Test Project':
+			 	list(TestProject);
+				break;
+		    case 'Standard Test':
+			 	list(StandardTest);
+				break;
+		    case 'Data Mining':
+			 	list(Integration);
+				break;
+			default: 
+			    $("#role").html('');
+				break;
+		   }
+});
+
+
+function list(array_list)
+{
+    $("#role").html(""); 
+    $("#role").append("<option value=\"None\" disabled selected>" + "None" + "</option>");
+	$(array_list).each(function (i) { 
+	    $("#role").append("<option value=\"" + array_list[i].value + "\">" + array_list[i].display + "</option>");
+	});
+}
+if (document.getElementById('edept')!=null)
+{
+    var parent = $("#edept").val();
+    switch (parent) {
+        case 'Test Project':
+            list(TestProject);
+            break;
+        case 'Standard Test':
+            list(StandardTest);
+            break;
+        case 'Data Mining':
+            list(Integration);
+            break;
+        default:
+            $("#role").html('');
+            break;
+    }
+}
+
+});
+</script>

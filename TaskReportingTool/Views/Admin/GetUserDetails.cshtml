@@ -1,0 +1,16 @@
+﻿@model IEnumerable<TaskReportingTool.Models.EmployeeView>
+
+<div>
+    <link href="~/Content/task.css" rel="stylesheet" />
+@foreach (var item in Model)
+{
+    <div class="taskbox tuser">
+        <div class="tasktitle">@item.Name</div><div class="btn-ed"> <a href="~/Admin/EditEmployee?id=@item.EmployeeId"><i class="fa fa-pencil" aria-hidden="true" style="margin-right:15px;"></i></a><a href="~/Admin/DeleteUser?id=@item.EmployeeId"> <i class="fa fa-trash-o" aria-hidden="true"></i></a></div>
+        <div class="taskhead"><strong>Email :</strong> @item.Email </div>
+        <div class="taskdate"><strong>Dept :</strong> @item.Department </div><div class="taskdate"><strong>Role :</strong> @item.Roles</div>
+        <div class="taskhead"><strong>UserName :</strong> @item.Username </div>
+        <div class="taskhead"><strong>Creation Date :</strong> @item.CreDate </div>
+    </div>
+}
+
+</div>

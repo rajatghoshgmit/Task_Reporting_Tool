@@ -1,0 +1,139 @@
+﻿@model IEnumerable<TaskReportingTool.Models.TaskView>
+
+@{
+    ViewBag.Title = "Add Report";
+    Layout = @"~/Views/Home/_homeLayout.cshtml";
+}
+<style>
+    .input-div .input-cell {
+        padding-left: 55px;
+        width: 100%;
+        height: 40px;
+        font-size: 24px;
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-radius: 8px;
+        border: 2px solid #bfbfbf;
+        background: #f2f2f2;
+        font-weight: 100;
+    }
+
+    .input-div {
+        position: relative;
+        margin-top: 25px;
+    }
+
+        .input-div i {
+            position: absolute;
+            left: 10px;
+            font-size: 28px;
+            padding: 5px;
+            color: #bfbfbf;
+        }
+
+        .input-div .input-cell:focus + i {
+            color: #80aaff;
+        }
+
+    .input-cell:focus {
+        border: 2px solid #80aaff;
+        outline: none;
+    }
+</style>
+<link href="~/Content/task.css" rel="stylesheet" />
+<div class="leftcontainer">
+    <div class="menutitle">Menu</div>
+
+    <div class="leftinner">
+        <div class="menu_item">
+            <center>
+                <a href="~/Home/PendingTask">
+                    <img src="~/image/task.png" class="menu_image" title="Pending Task" />
+                    <div class="menu_text">Pending Task</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Home/TotalTask">
+                    <img src="~/image/totaltask.png" class="menu_image" title="Total Task" />
+                    <div class="menu_text">Total Task</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Home/AddReport">
+                    <img src="~/image/report.png" class="menu_image" title="Add Report" />
+                    <div class="menu_text">Add Report</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Home/ModifyReport">
+                    <img src="~/image/editreport.png" class="menu_image" title="Modify Report" />
+                    <div class="menu_text">Modify Report</div>
+                </a>
+            </center>
+        </div>
+        <div class="menu_item">
+            <center>
+                <a href="~/Home/ModifyUser">
+                    <img src="~/image/manageuser.png" class="menu_image" title="Modify User" />
+                    <div class="menu_text">Modify User</div>
+                </a>
+            </center>
+        </div>
+
+        @if (Session["Roles"].ToString() == "Admin")
+        {
+            <div class="menu_item">
+                <center>
+                    <a href="~/Home">
+                        <img src="~/image/totaltask.png" class="menu_image" title="Admin Panel" />
+                        <div class="menu_text">Admin Panel</div>
+                    </a>
+                </center>
+            </div>}
+
+    </div>
+
+
+
+</div>
+<div class="rightcontainer">
+    <div class="headtitle">
+        Add Report
+    </div>
+    <div class="innercont">
+        <form action="~/Home/Reports" method="post">
+            <div class="input-div">
+                <select name="TaskName" class="input-cell">
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <option value="@(item.TaskName.ToString() + '-' + item.TaskId.ToString())"> @item.TaskName</option>
+                        }
+                    }
+                    else
+                    {
+                        <option value="No" disabled>No data Found</option>
+                    }
+                </select>
+                <i class="fa fa-tasks" aria-hidden="true"></i>
+            </div>
+            <label for="pwd">Reports Date</label>
+            <div class="input-div">
+                <input type="date" class="input-cell" name="Dates">
+                <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+            </div>
+
+            <input type="hidden" readonly name="EmployeeName" value="@Session["Name"]" class="form-control" />
+            <input type="hidden" name="EmployeeId" value=@Session["EmployeeId"] />
+            <br />
+            <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+        </form>
+</div>
+    </div>
+
